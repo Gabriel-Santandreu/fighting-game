@@ -33,15 +33,15 @@ class Sprite {
         c.fillStyle = this.color;
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-        // if (this.isAttacking) {
-        c.fillStyle = "green";
-        c.fillRect(
-            this.attackBox.position.x,
-            this.attackBox.position.y,
-            this.attackBox.width,
-            this.attackBox.height
-        );
-        //}
+        if (this.isAttacking) {
+            c.fillStyle = "green";
+            c.fillRect(
+                this.attackBox.position.x,
+                this.attackBox.position.y,
+                this.attackBox.width,
+                this.attackBox.height
+            );
+        }
     }
 
     update() {
@@ -103,17 +103,17 @@ const enemy = new Sprite({
 //Registro de teclas
 const keys = {
     a: {
-        pressed: false
+        pressed: false,
     },
     d: {
-        pressed: false
+        pressed: false,
     },
     ArrowRight: {
-        pressed: false
+        pressed: false,
     },
     ArrowLeft: {
-        pressed: false
-    }
+        pressed: false,
+    },
 };
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -163,7 +163,7 @@ function animate() {
         player.isAttacking
     ) {
         player.isAttacking = false;
-        console.log("on");
+        console.log("player on");
     }
 
     if (
@@ -179,7 +179,6 @@ function animate() {
 }
 
 window.addEventListener("keydown", (event) => {
-    console.log(event.key);
     switch (event.key) {
         case "d":
             keys.d.pressed = true;
@@ -201,19 +200,22 @@ window.addEventListener("keydown", (event) => {
 
         case "ArrowRight":
             keys.ArrowRight.pressed = true;
-            enemy.lastkey = "ArrowRight";
+            enemy.lastKey = "ArrowRight";
             break;
 
         case "ArrowLeft":
             keys.ArrowLeft.pressed = true;
-            enemy.lastkey = "ArrowLeft";
+            enemy.lastKey = "ArrowLeft";
             break;
 
         case "ArrowUp":
             enemy.velocity.y = -20;
             break;
+
+        case "Enter":
+            enemy.isAttacking = true;
+            break;
     }
-    console.log(event.key);
 });
 
 window.addEventListener("keyup", (event) => {
@@ -234,7 +236,6 @@ window.addEventListener("keyup", (event) => {
             keys.ArrowLeft.pressed = false;
             break;
     }
-    console.log(event.key);
 });
 
 console.log(player);
