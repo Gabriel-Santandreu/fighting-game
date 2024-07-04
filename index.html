@@ -1,3 +1,40 @@
-<canvas></canvas>
+<head>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- canvas container-->
+    <div class="canvas-container">
+        <!-- interface container -->
+        <div class="interface-container">
+            <!-- player health -->
+            <div class="playerParent">
+                <div class="overPlayer"></div>
+                <div id="playerHealth" class="player-health"></div>
 
-<script src="index.js"></script>
+            </div>
+
+
+            <!-- timer -->
+            <div id="timer" class="timer">
+                10
+            </div>
+
+
+            <!-- enemy health -->
+             <div class="enemyParent">
+                 <div class="overEnemy"></div>
+                 <div id="enemyHealth" class="enemy-health"></div>
+
+             </div>
+
+
+        </div>
+
+        <!-- Result message -->
+         <div id="displayText" class="Result"> Tie </div>
+
+        <canvas></canvas>
+    </div>
+
+    <script src="index.js"></script>
+</body>
