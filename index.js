@@ -16,6 +16,17 @@ const background = new Sprite({
     imageSrc: './img/background_2.png'
 })
 
+const shop = new Sprite({
+    position: {
+        x: 600,
+        y: 128
+    },
+    imageSrc: './img/shop_anim.png',
+    scale: 2.75,
+    framesMax: 6
+})
+
+
 //Registro de personajes y características
 const player = new Fighter({
     position: {
@@ -68,8 +79,9 @@ function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
-    background.update()
 
+    background.update()
+    shop.update()
     player.update();
     enemy.update();
 
