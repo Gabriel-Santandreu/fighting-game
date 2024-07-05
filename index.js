@@ -13,7 +13,7 @@ const background = new Sprite({
         x: 0,
         y: 0
     },
-    imageSrc: './img/background.png'
+    imageSrc: './img/background_2.png'
 })
 
 //Registro de personajes y características
