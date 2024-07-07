@@ -11,21 +11,20 @@ const gravity = 0.7;
 const background = new Sprite({
     position: {
         x: 0,
-        y: 0
+        y: 0,
     },
-    imageSrc: './img/background_2.png'
-})
+    imageSrc: "./img/background_2.png",
+});
 
 const shop = new Sprite({
     position: {
         x: 600,
-        y: 128
+        y: 128,
     },
-    imageSrc: './img/shop_anim.png',
+    imageSrc: "./img/shop_anim.png",
     scale: 2.75,
-    framesMax: 6
-})
-
+    framesMax: 6,
+});
 
 //Registro de personajes y características
 const player = new Fighter({
@@ -42,36 +41,35 @@ const player = new Fighter({
         y: 0,
     },
     color: "blue",
-    imageSrc: './img/Idle.png',
+    imageSrc: "./img/Player1/Idle.png",
     framesMax: 8,
     scale: 2.5,
     offset: {
         x: 215,
-        y: 157
+        y: 157,
     },
     sprites: {
         idle: {
-            imageSrc: './img/Idle.png',
-            framesMax: 8
+            imageSrc: "./img/Player1/Idle.png",
+            framesMax: 8,
         },
         run: {
-            imageSrc: './img/Run.png',
-            framesMax: 8
+            imageSrc: "./img/Player1/Run.png",
+            framesMax: 8,
         },
         jump: {
-            imageSrc: './img/Jump.png',
-            framesMax: 2
+            imageSrc: "./img/Player1/Jump.png",
+            framesMax: 2,
         },
         fall: {
-            imageSrc: './img/Fall.png',
-            framesMax: 2  
+            imageSrc: "./img/Player1/Fall.png",
+            framesMax: 2,
         },
         attack1: {
-            imageSrc: './img/Attack1.png',
-            framesMax: 6
-        }
-    }
-
+            imageSrc: "./img/Player1/Attack1.png",
+            framesMax: 6,
+        },
+    },
 });
 
 const enemy = new Fighter({
@@ -86,6 +84,35 @@ const enemy = new Fighter({
     offset: {
         x: -50,
         y: 0,
+    },
+    imageSrc: "./img/Player2/Idle.png",
+    framesMax: 4,
+    scale: 2.5,
+    offset: {
+        x: 215,
+        y: 170,
+    },
+    sprites: {
+        idle: {
+            imageSrc: "./img/Player2/Idle.png",
+            framesMax: 4,
+        },
+        run: {
+            imageSrc: "./img/Player2/Run.png",
+            framesMax: 8,
+        },
+        jump: {
+            imageSrc: "./img/Player2/Jump.png",
+            framesMax: 2,
+        },
+        fall: {
+            imageSrc: "./img/Player2/Fall.png",
+            framesMax: 2,
+        },
+        attack1: {
+            imageSrc: "./img/Player2/Attack1.png",
+            framesMax: 4,
+        },
     },
 });
 
@@ -110,10 +137,10 @@ function animate() {
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
 
-    background.update()
-    shop.update()
+    background.update();
+    shop.update();
     player.update();
-    //enemy.update();
+    enemy.update();
 
     player.velocity.x = 0;
     enemy.velocity.x = 0;
@@ -121,26 +148,35 @@ function animate() {
     //Movimiento de jugador
     if (keys.a.pressed && player.lastKey === "a") {
         player.velocity.x = -5;
-        player.switchSprite('run');
+        player.switchSprite("run");
     } else if (keys.d.pressed && player.lastKey === "d") {
         player.velocity.x = 5;
-        player.switchSprite('run');    
+        player.switchSprite("run");
     } else {
-        player.switchSprite('idle');
+        player.switchSprite("idle");
     }
 
     if (player.velocity.y < 0) {
-        player.switchSprite('jump');
+        player.switchSprite("jump");
     } else if (player.velocity.y > 0) {
-        player.switchSprite('fall');
-
+        player.switchSprite("fall");
     }
 
     //Movimiento de enemigo
     if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
         enemy.velocity.x = -5;
+        enemy.switchSprite("run");
     } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
         enemy.velocity.x = 5;
+        enemy.switchSprite("run");
+    } else {
+        enemy.switchSprite("idle");
+    }
+
+    if (enemy.velocity.y < 0) {
+        enemy.switchSprite("jump");
+    } else if (enemy.velocity.y > 0) {
+        enemy.switchSprite("fall");
     }
 
     //Check de la hitbox del golpe
@@ -210,7 +246,7 @@ window.addEventListener("keydown", (event) => {
             break;
 
         case "Enter":
-            enemy.isAttacking = true;
+            enemy.attack()
             break;
     }
 });
