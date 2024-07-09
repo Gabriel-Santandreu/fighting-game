@@ -109,7 +109,7 @@ class Fighter extends Sprite {
 
     update() {
         this.draw();
-        if (!this.dead) {
+        if (!this.dead && timer > 0) {
             this.animateFrames();
         }
 

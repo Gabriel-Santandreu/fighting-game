@@ -1,5 +1,12 @@
 <head>
-    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="main.css" />
 </head>
 <body>
     <!-- canvas container-->
@@ -10,32 +17,30 @@
             <div class="playerParent">
                 <div class="overPlayer"></div>
                 <div id="playerHealth" class="player-health"></div>
-
             </div>
-
 
             <!-- timer -->
-            <div id="timer" class="timer">
-                10
-            </div>
-
+            <div id="timer" class="timer">10</div>
 
             <!-- enemy health -->
-             <div class="enemyParent">
-                 <div class="overEnemy"></div>
-                 <div id="enemyHealth" class="enemy-health"></div>
-
-             </div>
-
-
+            <div class="enemyParent">
+                <div class="overEnemy"></div>
+                <div id="enemyHealth" class="enemy-health"></div>
+            </div>
         </div>
 
         <!-- Result message -->
-         <div id="displayText" class="Result"> Tie </div>
+        <div id="displayText" class="Result">Tie</div>
 
         <canvas></canvas>
     </div>
 
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
     <script src="js/utils.js"></script>
     <script src="js/classes.js"></script>
     <script src="index.js"></script>
