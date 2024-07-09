@@ -70,6 +70,14 @@ const player = new Fighter({
             framesMax: 6,
         },
     },
+    attackBox: {
+        offset: {
+            x: 100,
+            y: 0,
+        },
+        width: 160,
+        height: 150,
+    },
 });
 
 const enemy = new Fighter({
@@ -113,6 +121,14 @@ const enemy = new Fighter({
             imageSrc: "./img/Player2/Attack1.png",
             framesMax: 4,
         },
+    },
+    attackBox: {
+        offset: {
+            x: -150,
+            y: 0,
+        },
+        width: 160,
+        height: 150,
     },
 });
 
@@ -185,11 +201,17 @@ function animate() {
             rectangle1: player,
             rectangle2: enemy,
         }) &&
-        player.isAttacking
+        player.isAttacking &&
+        player.framesCurrent === 4
     ) {
         player.isAttacking = false;
         enemy.health -= 5;
         document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+    }
+
+    //Si el jugador falla
+    if (player.isAttacking && player.framesCurrent === 4) {
+        player.isAttacking = false;
     }
 
     if (
@@ -197,12 +219,18 @@ function animate() {
             rectangle1: enemy,
             rectangle2: player,
         }) &&
-        enemy.isAttacking
+        enemy.isAttacking &&
+        enemy.framesCurrent === 2
     ) {
         enemy.isAttacking = false;
         player.health -= 5;
         document.querySelector("#playerHealth").style.width =
             player.health + "%";
+    }
+
+    //Si el jugador falla
+    if (enemy.isAttacking && enemy.framesCurrent === 2) {
+        enemy.isAttacking = false;
     }
 
     // end game based on health
@@ -246,7 +274,7 @@ window.addEventListener("keydown", (event) => {
             break;
 
         case "Enter":
-            enemy.attack()
+            enemy.attack();
             break;
     }
 });
